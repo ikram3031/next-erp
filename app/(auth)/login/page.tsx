@@ -25,7 +25,8 @@ const LoginPage = () => {
     try {
       const data = await login(username, password);
       toast.success("Login successful");
-      localStorage.setItem("accessToken", data.accessToken);
+      // localStorage.setItem("accessToken", data.accessToken);
+      document.cookie = `accessToken=${data.accessToken}; path=/`;
       router.push("/dashboard");
     } catch (err) {
       setError("Invalid credentials");
