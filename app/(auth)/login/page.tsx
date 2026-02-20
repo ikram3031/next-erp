@@ -17,13 +17,12 @@ const LoginPage = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
     setError("");
 
     try {
-      await login(username, password);
       const data = await login(username, password);
       toast.success("Login successful");
       localStorage.setItem("accessToken", data.accessToken);
@@ -36,11 +35,12 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-muted">
-      <Card className="w-100">
+    <div className="flex min-h-screen items-center justify-center bg-background text-foreground">
+      <Card className="w-full max-w-md">
         <CardHeader>
-          <CardTitle>ERP Login</CardTitle>
+          <CardTitle className="text-center">ERP Login</CardTitle>
         </CardHeader>
+
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
@@ -60,7 +60,7 @@ const LoginPage = () => {
               />
             </div>
 
-            {error && <p className="text-sm text-red-500">{error}</p>}
+            {error && <p className="text-sm text-destructive">{error}</p>}
 
             <Button className="w-full" disabled={loading}>
               {loading ? "Logging in..." : "Login"}
