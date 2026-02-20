@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
-import { LayoutDashboard, Menu, LogOut } from "lucide-react";
+import { LayoutDashboard, Menu, LogOut, Package } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ThemeToggle from "@/components/theme-toggle";
 
@@ -19,6 +19,7 @@ const ProtectedLayout = ({ children }: { children?: React.ReactNode }) => {
 
   const menuItems = [
     { name: "Dashboard", icon: LayoutDashboard, path: "/dashboard" },
+    { name: "Products", icon: Package, path: "/products" },
   ];
 
   return (
