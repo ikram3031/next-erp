@@ -7,6 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
+import { toast } from "sonner";
 
 const LoginPage = () => {
   const router = useRouter();
@@ -23,6 +24,9 @@ const LoginPage = () => {
 
     try {
       await login(username, password);
+      const data = await login(username, password);
+      toast.success("Login successful");
+      localStorage.setItem("accessToken", data.accessToken);
       router.push("/dashboard");
     } catch (err) {
       setError("Invalid credentials");
@@ -33,7 +37,7 @@ const LoginPage = () => {
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-muted">
-      <Card className="w-[400px]">
+      <Card className="w-100">
         <CardHeader>
           <CardTitle>ERP Login</CardTitle>
         </CardHeader>

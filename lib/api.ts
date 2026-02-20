@@ -1,7 +1,6 @@
 export const apiFetch = async (url: string, options: RequestInit = {}) => {
   const res = await fetch(`https://dummyjson.com${url}`, {
     ...options,
-    credentials: "include",
     headers: {
       "Content-Type": "application/json",
       ...(options.headers || {}),
